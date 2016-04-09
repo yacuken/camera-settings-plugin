@@ -94,7 +94,7 @@ Page
                         delegate: MenuItem
                         {
                             text: resolution + " (" + aspectRatio + ")"
-                            onClicked: set(secondary_image_resolution_combo, index, secondary_image_resolution_combo, secondary_image_resolution, secondary_image_viewfinder_resolution)
+                            onClicked: set(secondary_image_resolutions_model, index, secondary_image_resolution_combo, secondary_image_resolution, secondary_image_viewfinder_resolution)
                         }
                     }
                 }
@@ -216,9 +216,9 @@ Page
     {
         var d = model.get(index)
         confval.value = d.resolution
-        if (d.aspectRation == "4:3")
+        if (d.aspectRatio == "4:3")
             vfconfval.value = viewfinderResolution_4_3
-        else if (d.aspectRation == "16:9")
+        else if (d.aspectRatio == "16:9")
             vfconfval.value = viewfinderResolution_16_9
 
         update(model, combo, confval)
