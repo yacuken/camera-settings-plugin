@@ -2,5 +2,31 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name></name>
+    <message id="onyx-camera-settings-title">
+        <source>Camera settings</source>
+        <extracomment>page header</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="primary-camera-settings">
+        <source>Rear camera</source>
+        <extracomment>section header for primary camera settings</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="image-resolution">
+        <source>Image resolution</source>
+        <extracomment>Combobox label for image resolution</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="video-resolution">
+        <source>Video resolution</source>
+        <extracomment>Combobox label for video resolution</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="secondary-camera-settings">
+        <source>Front camera</source>
+        <extracomment>section header for secondary camera settings</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

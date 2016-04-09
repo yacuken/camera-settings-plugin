@@ -15,7 +15,8 @@ system(lrelease -idbased $$PWD/i18n/*.ts)
 OTHER_FILES += \
     onyx-camera-settings.json \
     settings.qml \
-    i18n/*.ts
+    i18n/*.ts \
+    camera-resolutions.json
 
 TRANSLATIONS += i18n/*.ts
     
