@@ -109,6 +109,27 @@ Page
                     }
                 }
             }
+            SectionHeader
+            {
+                //: section header for other settings
+                //% "Other settings"
+                text: qsTrId("other-settings-header")
+            }
+            Slider
+            {
+                id: video_bit_rate_slider
+                width: parent.width - 2*Theme.paddingLarge
+                anchors.horizontalCenter: parent.horizontalCenter
+                //: Slider label for video bit rate setting
+                //% "Video Bitrate"
+                label: qsTrId("video-bit-rate-slider-label")
+                valueText: value/1000000 + " Mbps"
+                minimumValue: 1000000
+                maximumValue: 100000000
+                stepSize: 1000000
+                value: videoBitRate.value
+                onReleased: if (value != videoBitRate.value) videoBitRate.value = value
+            }
         }
     }    
 
@@ -151,6 +172,13 @@ Page
     {
         id: secondary_video_viewfinder_resolution
         key: "/apps/jolla-camera/secondary/video/viewfinderResolution"
+    }
+    ConfigurationValue
+    {
+        id: videoBitRate
+        key: "/apps/jolla-camera/videoBitRate"
+        defaultValue: 12000000
+        onValueChanged: video_bit_rate_slider.value = value
     }
 
     ListModel

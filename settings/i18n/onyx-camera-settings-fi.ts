@@ -26,5 +26,15 @@
         <extracomment>section header for secondary camera settings</extracomment>
         <translation>Etukamera</translation>
     </message>
+    <message id="other-settings-header">
+        <source>Other settings</source>
+        <extracomment>section header for other settings</extracomment>
+        <translation>Muut asetukset</translation>
+    </message>
+    <message id="video-bit-rate-slider-label">
+        <source>Video Bitrate</source>
+        <extracomment>Slider label for video bit rate setting</extracomment>
+        <translation>Videon bittinopeus</translation>
+    </message>
 </context>
 </TS>

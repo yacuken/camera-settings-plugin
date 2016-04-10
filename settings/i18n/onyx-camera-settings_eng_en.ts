@@ -28,5 +28,15 @@
         <extracomment>section header for secondary camera settings</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message id="other-settings-header">
+        <source>Other settings</source>
+        <extracomment>section header for other settings</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="video-bit-rate-slider-label">
+        <source>Video Bitrate</source>
+        <extracomment>Slider label for video bit rate setting</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
