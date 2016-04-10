@@ -4,7 +4,7 @@ entries.path = /usr/share/jolla-settings/entries
 entries.files = onyx-camera-settings.json
 
 pages.path = /usr/share/jolla-settings/pages/onyx-camera-settings
-pages.files = settings.qml
+pages.files = settings.qml camera-resolutions.json
 
 translations.path = /usr/share/translations
 translations.files = i18n/*.qm
