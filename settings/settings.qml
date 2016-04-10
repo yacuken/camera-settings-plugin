@@ -43,13 +43,11 @@ Page
                 //: Combobox label for image resolution
                 //% "Image resolution"
                 label: qsTrId("image-resolution")
-                menu: ContextMenu
-                {
+                menu: ContextMenu {
                     Repeater
                     {
                         model: primary_image_resolutions_model
-                        delegate: MenuItem
-                        {
+                        delegate: MenuItem {
                             text: resolution + " (" + aspectRatio + ")"
                             onClicked: set(primary_image_resolutions_model, index, primary_image_resolution_combo, primary_image_resolution, primary_image_viewfinder_resolution)
                         }
@@ -62,19 +60,18 @@ Page
                 //: Combobox label for video resolution
                 //% "Video resolution"
                 label: qsTrId("video-resolution")
-                menu: ContextMenu
-                {
+                menu: ContextMenu {
                     Repeater
                     {
                         model: primary_video_resolutions_model
-                        delegate: MenuItem
-                        {
+                        delegate: MenuItem {
                             text: resolution + " (" + aspectRatio + ")"
                             onClicked: set(primary_video_resolutions_model, index, primary_video_resolution_combo, primary_video_resolution, primary_video_viewfinder_resolution)
                         }
                     }
                 }
             }
+
             SectionHeader
             {
                 //: section header for secondary camera settings
@@ -86,13 +83,11 @@ Page
             {
                 id: secondary_image_resolution_combo
                 label: qsTrId("image-resolution")
-                menu: ContextMenu
-                {
+                menu: ContextMenu {
                     Repeater
                     {
                         model: secondary_image_resolutions_model
-                        delegate: MenuItem
-                        {
+                        delegate: MenuItem {
                             text: resolution + " (" + aspectRatio + ")"
                             onClicked: set(secondary_image_resolutions_model, index, secondary_image_resolution_combo, secondary_image_resolution, secondary_image_viewfinder_resolution)
                         }
@@ -103,13 +98,11 @@ Page
             {
                 id: secondary_video_resolution_combo
                 label: qsTrId("video-resolution")
-                menu: ContextMenu
-                {
+                menu: ContextMenu {
                     Repeater
                     {
                         model: secondary_video_resolutions_model
-                        delegate: MenuItem
-                        {
+                        delegate: MenuItem {
                             text: resolution + " (" + aspectRatio + ")"
                             onClicked: set(secondary_video_resolutions_model, index, secondary_video_resolution_combo, secondary_video_resolution, secondary_video_viewfinder_resolution)
                         }
