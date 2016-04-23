@@ -62,6 +62,12 @@ void SettingsUi::scan()
     qDebug() << "all" << devices;
 
     GstElement *cameraBin = gst_element_factory_make("camerabin", NULL);
+    g_object_set(cameraBin, "camera-source", "droidcamsrc", NULL);
+
+    GstElement *videoSource = gst_element_factory_make("droidcamsrc", NULL);
+    g_object_set(videoSource, "camera-device", devices.at(0).second.toInt(), NULL);
+
+    g_object_set(cameraBin, "camera-source", videoSource, NULL);
 
     GstCaps *caps = NULL;
     g_object_get(cameraBin, "image-capture-supported-caps", &caps, NULL);
