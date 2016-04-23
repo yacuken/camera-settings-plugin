@@ -1,6 +1,8 @@
 TEMPLATE = lib
 TARGET = onyxcamerasettings-qt5
 CONFIG += qt hide_symbols 
+CONFIG += link_pkgconfig
+PKGCONFIG += gstreamer-1.0
 QT += dbus qml quick
 QT -= gui
 

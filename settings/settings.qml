@@ -254,7 +254,6 @@ Page
         combo._updating = false
         for (var i=0 ; i<model.count; i++)
         {
-            console.log("ir " + model.get(i).resolution + " cv " + confval.value)
             if (model.get(i).resolution == confval.value)
             {
                 combo.currentIndex = i

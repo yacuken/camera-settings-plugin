@@ -1,60 +1,58 @@
 #include "settingsui.h"
 #include <QDir>
 #include <QDebug>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <linux/videodev2.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
+#include <gst/gst.h>
 
 SettingsUi::SettingsUi(QObject *parent) :
     QObject(parent)
 {
     qDebug() << "hoplaa!";
-    scanV4l2();
+    scan();
 }
 
 SettingsUi::~SettingsUi()
 {
 }
 
-void SettingsUi::scanV4l2()
+void SettingsUi::scan()
 {
-    QDir d("/dev/", "video?", QDir::Name | QDir::IgnoreCase, QDir::System);
+    QList<QPair<QString, QVariant> > devices;
 
-    QStringList entries = d.entryList();
-    qDebug() << "scanning" << entries;
-
-    foreach (const QString& dv, entries)
-    {
-        QString dev = d.absoluteFilePath(dv);
-        struct v4l2_capability cap;
-        memset(&cap, 0x0, sizeof(cap));
-
-        qDebug() << "*** looking at" << dev << "***";
-
-        int fd = open(dev.toLocal8Bit().constData(), O_RDONLY);
-        if (fd == -1)
-        {
-            qDebug() << "failed to open";
-            continue;
-        }
-
-        if (ioctl(fd, VIDIOC_QUERYCAP, &cap) != 0)
-        {
-            qDebug() << "query device capabilities failed";
-            close(fd);
-            continue;
-        }
-
-        close(fd);
-
-        qDebug() << "driver" << (char *)cap.driver;
-        qDebug() << "card" << (char *)cap.card;
-        qDebug() << "bus" << (char *)cap.bus_info;
-        qDebug() << "version" << (long)cap.version;
-        qDebug() << "capabilities" << (long)cap.capabilities;
-        qDebug() << "device caps" << (long)cap.device_caps;
+    // Too bad there's no way to get the values of an enum without creating the element :(
+    GstElement *elem = gst_element_factory_make("droidcamsrc", NULL);
+    if (!elem) {
+      qWarning() << "QtCamScanner: Failed to create an instance of droidcamsrc";
+      return;
     }
+
+    GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(elem), "camera-device");
+    if (!spec) {
+      qWarning() << "QtCamScanner: Failed to get property caemra-device";
+      gst_object_unref(elem);
+      return;
+    }
+
+    if (!G_IS_PARAM_SPEC_ENUM(spec)) {
+      qWarning() << "QtCamScanner: Property camera-device is not an enum";
+      gst_object_unref(elem);
+      return;
+    }
+
+    GParamSpecEnum *e = G_PARAM_SPEC_ENUM(spec);
+    // First add the default:
+    devices << qMakePair<QString, QVariant>(e->enum_class->values[e->default_value].value_name,
+                        QByteArray::number(e->default_value));
+
+    qDebug() << "default" << devices;
+
+    for (int x = e->enum_class->minimum; x <= e->enum_class->maximum; x++) {
+      if (x != e->default_value) {
+        devices << qMakePair<QString, QVariant>(e->enum_class->values[x].value_name,
+                            QByteArray::number(x));
+      }
+    }
+
+    qDebug() << "all" << devices;
+
+    gst_object_unref(elem);
 }
