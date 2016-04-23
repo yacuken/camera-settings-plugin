@@ -24,7 +24,6 @@ void SettingsUi::scanV4l2()
     QDir d("/dev/", "video?", QDir::Name | QDir::IgnoreCase, QDir::System);
 
     QStringList entries = d.entryList();
-    QList<QPair<QString, QVariant> > devices;
 
     foreach (const QString& dv, entries)
     {
@@ -32,24 +31,29 @@ void SettingsUi::scanV4l2()
         struct v4l2_capability cap;
         memset(&cap, 0x0, sizeof(cap));
 
+        qDebug() << "*** looking at" << dev << "***";
+
         int fd = open(dev.toLocal8Bit().constData(), O_RDONLY);
         if (fd == -1)
         {
+            qDebug() << "failed to open";
             continue;
         }
 
         if (ioctl(fd, VIDIOC_QUERYCAP, &cap) != 0)
         {
+            qDebug() << "query device capabilities failed";
             close(fd);
             continue;
         }
 
         close(fd);
 
-        if (cap.capabilities & V4L2_CAP_VIDEO_CAPTURE)
-        {
-            devices << qMakePair<QString, QVariant>((char *)cap.card, dev.toLocal8Bit());
-        }
+        qDebug() << "driver" << (char *)cap.driver;
+        qDebug() << "card" << (char *)cap.card;
+        qDebug() << "bus" << (char *)cap.bus_info;
+        qDebug() << "version" << (long)cap.version;
+        qDebug() << "capabilities" << (long)cap.capabilities;
+        qDebug() << "device caps" << (long)cap.device_caps;
     }
-    qDebug() << devices;
 }
