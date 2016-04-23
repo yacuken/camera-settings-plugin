@@ -7,6 +7,10 @@ Page
 {
     id: page
 
+    CameraSettings
+    {
+    }
+
     property string viewfinderResolution_4_3: "1440x1080"
     property string viewfinderResolution_16_9: "1920x1080"
 
