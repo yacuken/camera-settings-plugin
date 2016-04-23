@@ -7,6 +7,7 @@ SettingsUi::SettingsUi(QObject *parent) :
     QObject(parent)
 {
     qDebug() << "hoplaa!";
+    gst_init(0, 0);
     scan();
 }
 
