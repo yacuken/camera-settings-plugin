@@ -61,8 +61,10 @@ void SettingsUi::scan()
 
     qDebug() << "all" << devices;
 
+    GstElement *cameraBin = gst_element_factory_make("camerabin", NULL);
+
     GstCaps *caps = NULL;
-    g_object_get(elem, "image-capture-supported-caps", &caps, NULL);
+    g_object_get(cameraBin, "image-capture-supported-caps", &caps, NULL);
 
     if (!caps)
     {
