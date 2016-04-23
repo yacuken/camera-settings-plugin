@@ -11,7 +11,7 @@
 SettingsUi::SettingsUi(QObject *parent) :
     QObject(parent)
 {
-    /* Leaving this here for future needs */
+    qDebug() << "hoplaa!";
     scanV4l2();
 }
 
@@ -24,6 +24,7 @@ void SettingsUi::scanV4l2()
     QDir d("/dev/", "video?", QDir::Name | QDir::IgnoreCase, QDir::System);
 
     QStringList entries = d.entryList();
+    qDebug() << "scanning" << entries;
 
     foreach (const QString& dv, entries)
     {
