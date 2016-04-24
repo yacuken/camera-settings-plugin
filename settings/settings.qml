@@ -237,9 +237,10 @@ Page
     {
         var d = model.get(index)
         confval.value = d.resolution
-        if (d.aspectRatio == "4:3")
+        var ar = d.aspectRatio.split(":")
+        if (ar[0]/ar[1] <= 1.5)
             vfconfval.value = viewfinderResolution_4_3
-        else if (d.aspectRatio == "16:9")
+        else
             vfconfval.value = viewfinderResolution_16_9
 
         update(model, combo, confval)
