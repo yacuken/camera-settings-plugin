@@ -1,5 +1,5 @@
 TEMPLATE = lib
-TARGET = onyxcamerasettings-qt5
+TARGET = camerasettings-qt5
 CONFIG += qt hide_symbols 
 QT += dbus qml quick
 QT -= gui

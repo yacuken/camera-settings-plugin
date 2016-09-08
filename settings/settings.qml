@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import org.nemomobile.configuration 1.0
-import com.kimmoli.onyxcamerasettings 1.0
+import com.kimmoli.camerasettings 1.0
 
 Page
 {
@@ -27,7 +27,7 @@ Page
             {
                 //: page header
                 //% "Camera settings"
-                title: qsTrId("onyx-camera-settings-title")
+                title: qsTrId("camera-settings-title")
             }
 
             SectionHeader
@@ -203,7 +203,7 @@ Page
 
     Component.onCompleted:
     {
-        request("./camera-resolutions.json", function(o)
+        request("/etc/camera-settings/camera-resolutions.json", function(o)
         {
             var data = JSON.parse(o.responseText)
 
