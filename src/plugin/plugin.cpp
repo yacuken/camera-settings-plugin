@@ -20,18 +20,18 @@ public:
     }
 };
 
-class Q_DECL_EXPORT OnyxCameraSettingsPlugin : public QQmlExtensionPlugin
+class Q_DECL_EXPORT CameraSettingsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     Q_PLUGIN_METADATA(IID "com.kimmoli.camerasettings")
 #endif
 public:
-    OnyxCameraSettingsPlugin()
+    CameraSettingsPlugin()
     {
     }
 
-    virtual ~OnyxCameraSettingsPlugin()
+    virtual ~CameraSettingsPlugin()
     {
     }
 
