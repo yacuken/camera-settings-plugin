@@ -7,6 +7,7 @@ Page
 {
     id: page
 
+    property string settingsConfig: "/etc/camera-settings/camera-resolutions.json"
     property string viewfinderResolution_4_3: "1440x1080"
     property string viewfinderResolution_16_9: "1920x1080"
 
@@ -203,7 +204,14 @@ Page
 
     Component.onCompleted:
     {
-        request("/etc/camera-settings/camera-resolutions.json", function(o)
+        doesFileExist(settingsConfig, function(o)
+        {
+            if(!o.responseText)
+                var settings_config = "./camera-resolutions.json";
+            else
+                var settings_config = settingsConfig;
+
+        request(settings_config, function(o)
         {
             var data = JSON.parse(o.responseText)
 
@@ -230,7 +238,7 @@ Page
 
             viewfinderResolution_4_3 = data.viewfinder.viewfinderResolution_4_3
             viewfinderResolution_16_9 = data.viewfinder.viewfinderResolution_16_9
-        })
+        })})
     }
 
     function set(model, index, combo, confval, vfconfval)
@@ -272,6 +280,20 @@ Page
         })(xhr);
         xhr.open('GET', url, true);
         xhr.send('');
+    }
+
+    function doesFileExist(url, callback)
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.send('');
+        xhr.onreadystatechange = (function(myxhr)
+        {
+            return function()
+            {
+                if(myxhr.readyState === 4) callback(myxhr);
+            }
+        })(xhr);
     }
 }
 
