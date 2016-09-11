@@ -20,39 +20,39 @@ public:
     }
 };
 
-class Q_DECL_EXPORT OnyxCameraSettingsPlugin : public QQmlExtensionPlugin
+class Q_DECL_EXPORT CameraSettingsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-    Q_PLUGIN_METADATA(IID "com.kimmoli.onyxcamerasettings")
+    Q_PLUGIN_METADATA(IID "com.kimmoli.camerasettings")
 #endif
 public:
-    OnyxCameraSettingsPlugin()
+    CameraSettingsPlugin()
     {
     }
 
-    virtual ~OnyxCameraSettingsPlugin()
+    virtual ~CameraSettingsPlugin()
     {
     }
 
     void registerTypes(const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("com.kimmoli.onyxcamerasettings"));
+        Q_ASSERT(uri == QLatin1String("com.kimmoli.camerasettings"));
 
         qmlRegisterType<SettingsUi>(uri, 1, 0, "CameraSettings");
     }
 
     void initializeEngine(QQmlEngine *engine, const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("com.kimmoli.onyxcamerasettings"));
+        Q_ASSERT(uri == QLatin1String("com.kimmoli.camerasettings"));
 
         Translator *engineeringEnglish = new Translator(engine);
-        if (!engineeringEnglish->load("onyx-camera-settings_eng_en", "/usr/share/translations"))
-            qWarning() << "failed loading translator" << "onyx-camera-settings_eng_en";
+        if (!engineeringEnglish->load("camera-settings_eng_en", "/usr/share/translations"))
+            qWarning() << "failed loading translator" << "camera-settings_eng_en";
 
         Translator *translator = new Translator(engine);
-        if (!translator->load(QLocale(), "onyx-camera-settings", "-", "/usr/share/translations"))
-            qWarning() << "failed loading translator" << "onyx-camera-settings" << QLocale();
+        if (!translator->load(QLocale(), "camera-settings", "-", "/usr/share/translations"))
+            qWarning() << "failed loading translator" << "camera-settings" << QLocale();
 
         QQmlExtensionPlugin::initializeEngine(engine, uri);
     }

@@ -3,7 +3,7 @@
 <TS version="2.1">
 <context>
     <name></name>
-    <message id="onyx-camera-settings-title">
+    <message id="camera-settings-title">
         <source>Camera settings</source>
         <extracomment>page header</extracomment>
         <translation type="unfinished"></translation>

@@ -1,14 +1,14 @@
 # 
 # 
 
-Name:       onyx-camera-settings-plugin
+Name:       camera-settings-plugin
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
-Summary:    Onyx camera settings plugin
+Summary:    Camera settings plugin
 Version:    0.0.1
 Release:    1
 Group:      System/Libraries
@@ -47,8 +47,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libonyxcamerasettings-qt5.*
-%{_libdir}/qt5/qml/com/kimmoli/onyxcamerasettings/
+%{_libdir}/libcamerasettings-qt5.*
+%{_libdir}/qt5/qml/com/kimmoli/camerasettings/
 /usr/share/jolla-settings/entries/
-/usr/share/jolla-settings/pages/onyx-camera-settings/
+/usr/share/jolla-settings/pages/camera-settings/
 /usr/share/translations/

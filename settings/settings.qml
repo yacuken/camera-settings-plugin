@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import org.nemomobile.configuration 1.0
-import com.kimmoli.onyxcamerasettings 1.0
+import com.kimmoli.camerasettings 1.0
 
 Page
 {
     id: page
+
+    property string resolutionConfig: "/etc/camera-settings/camera-resolutions.json"
 
     SilicaFlickable
     {
@@ -24,7 +26,7 @@ Page
             {
                 //: page header
                 //% "Camera settings"
-                title: qsTrId("onyx-camera-settings-title")
+                title: qsTrId("camera-settings-title")
             }
 
             SectionHeader
@@ -200,7 +202,14 @@ Page
 
     Component.onCompleted:
     {
-        request("./camera-resolutions.json", function(o)
+        doesFileExist(resolutionConfig, function(o)
+        {
+            if(!o.responseText)
+                var resolution_config = "./camera-resolutions.json";
+            else
+                var resolution_config = resolutionConfig;
+
+        request(resolution_config, function(o)
         {
             var data = JSON.parse(o.responseText)
 
@@ -228,7 +237,7 @@ Page
                                                            viewFinder: data.secondary.video[i].viewFinder,
                                                            aspectRatio: data.secondary.video[i].aspectRatio })
             update(secondary_video_resolutions_model, secondary_video_resolution_combo, secondary_video_resolution)
-        })
+        })})
     }
 
     function set(model, index, combo, confval, vfconfval)
@@ -265,6 +274,20 @@ Page
         })(xhr);
         xhr.open('GET', url, true);
         xhr.send('');
+    }
+
+    function doesFileExist(url, callback)
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.send('');
+        xhr.onreadystatechange = (function(myxhr)
+        {
+            return function()
+            {
+                if(myxhr.readyState === 4) callback(myxhr);
+            }
+        })(xhr);
     }
 }
 

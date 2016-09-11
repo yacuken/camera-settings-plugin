@@ -1,2 +1,2 @@
-module com.kimmoli.onyxcamerasettings
-plugin onyxcamerasettings
+module com.kimmoli.camerasettings
+plugin camerasettings

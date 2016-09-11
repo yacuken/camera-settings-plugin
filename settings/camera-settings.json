@@ -1,0 +1,16 @@
+{
+    "translation_catalog": "camera-settings",
+    "entries": [
+    {
+        "path": "system_settings/system/camera-settings",
+        "title": "Camera settings",
+        "translation_id": "camera-settings-title",
+        "type": "page",
+        "icon": "image://theme/icon-m-camera",
+        "order": 260,
+        "params": {
+            "source": "/usr/share/jolla-settings/pages/camera-settings/settings.qml"
+         }
+    }
+    ]
+}
