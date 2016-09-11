@@ -7,9 +7,6 @@ Page
 {
     id: page
 
-    property string viewfinderResolution_4_3: "1440x1080"
-    property string viewfinderResolution_16_9: "1920x1080"
-
     SilicaFlickable
     {
         id: flick
@@ -210,26 +207,27 @@ Page
             var i
             for (i=0 ; i < data.primary.image.length ; i++)
                 primary_image_resolutions_model.append({ resolution: data.primary.image[i].resolution,
-                                                  aspectRatio: data.primary.image[i].aspectRatio })
+                                                         viewFinder: data.primary.image[i].viewFinder,
+                                                         aspectRatio: data.primary.image[i].aspectRatio })
             update(primary_image_resolutions_model, primary_image_resolution_combo, primary_image_resolution)
 
             for (i=0 ; i < data.primary.video.length ; i++)
                 primary_video_resolutions_model.append({ resolution: data.primary.video[i].resolution,
-                                                  aspectRatio: data.primary.video[i].aspectRatio })
+                                                         viewFinder: data.primary.video[i].viewFinder,
+                                                         aspectRatio: data.primary.video[i].aspectRatio })
             update(primary_video_resolutions_model, primary_video_resolution_combo, primary_video_resolution)
 
             for (i=0 ; i < data.secondary.image.length ; i++)
                 secondary_image_resolutions_model.append({ resolution: data.secondary.image[i].resolution,
-                                                  aspectRatio: data.secondary.image[i].aspectRatio })
+                                                           viewFinder: data.secondary.image[i].viewFinder,
+                                                           aspectRatio: data.secondary.image[i].aspectRatio })
             update(secondary_image_resolutions_model, secondary_image_resolution_combo, secondary_image_resolution)
 
             for (i=0 ; i < data.secondary.video.length ; i++)
                 secondary_video_resolutions_model.append({ resolution: data.secondary.video[i].resolution,
-                                                  aspectRatio: data.secondary.video[i].aspectRatio })
+                                                           viewFinder: data.secondary.video[i].viewFinder,
+                                                           aspectRatio: data.secondary.video[i].aspectRatio })
             update(secondary_video_resolutions_model, secondary_video_resolution_combo, secondary_video_resolution)
-
-            viewfinderResolution_4_3 = data.viewfinder.viewfinderResolution_4_3
-            viewfinderResolution_16_9 = data.viewfinder.viewfinderResolution_16_9
         })
     }
 
@@ -237,12 +235,7 @@ Page
     {
         var d = model.get(index)
         confval.value = d.resolution
-        var ar = d.aspectRatio.split(":")
-        if (ar[0]/ar[1] <= 1.5)
-            vfconfval.value = viewfinderResolution_4_3
-        else
-            vfconfval.value = viewfinderResolution_16_9
-
+        vfconfval.value = d.viewFinder
         update(model, combo, confval)
     }
 
